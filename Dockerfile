@@ -27,6 +27,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/list/* \
     && rm -r /openfortivpn
 
-ENTRYPOINT [ "openfortivpn" ]
+COPY bin /usr/local/bin/
 
-CMD [ "-c", "/etc/openfortivpn/config" ]
+ENTRYPOINT [ "docker-entrypoint.sh" ]
+
+CMD [ "openfortivpn", "-c", "/etc/openfortivpn/config" ]
